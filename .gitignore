@@ -154,6 +154,12 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+# Migrate
+./manage.py makemigrations --merge
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
+
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore

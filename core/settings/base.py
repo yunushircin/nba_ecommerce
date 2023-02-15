@@ -14,7 +14,9 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+#BASE_DIR = Path(__file__).resolve().parent.parent
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,7 +28,7 @@ SECRET_KEY = 'django-insecure-sqf4^_je72-2)wntl6=+w2t#m*s=!kokoqk=)(h#ys2mc()xvk
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+
 # DEBUG = getenv("IS_DEVELOPMENT", True)
 
 ALLOWED_HOSTS = ['*']
@@ -78,42 +80,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'django-app-db',
-#         'USER': 'django-app-db-root',
-#         'PASSWORD': 'cZm;}RW1&}$[',
-#         'HOST': 'rolletto.online',
-#         'PORT': '3306',
-#     }
-# }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'nba_ecommerce',
-        'USER': 'rolletto',
-        'PASSWORD': '~jJDfEySEf76',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
-
-
-# Password validation
-# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -147,11 +113,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static'),
-# ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 MEDIA_URL = '/images/'
