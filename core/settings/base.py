@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-sqf4^_je72-2)wntl6=+w2t#m*s=!kokoqk=)(h#ys2mc()xvk
 
 # DEBUG = getenv("IS_DEVELOPMENT", True)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['159.89.7.152']
 
 # 'env-nbaecommerce.eba-eeeshp6r.us-west-2.elasticbeanstalk.com'
 
@@ -112,9 +112,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-
-
 
 MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
