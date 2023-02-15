@@ -41,7 +41,7 @@
 		<div class="row mx-auto container-fluid">
 			{% for product in products %}
 			<div class="product text-center col-lg-3 col-md-4 col-12 mt-3">
-				<a href="sproduct/{{product.id}}"><img class="img-fluid mb-3" src="{{product.imageURL}}"></a>
+				<a href="sproduct/{{product.id}}"><img class="img-fluid mb-3" src="{%static product.imageURL%}"></a>
 				<h3><span>${{product.price|floatformat:2}}</span></h3>
 				<h4><strong>{{product.name}}</strong> </h4>
 				<button data-product= "{{product.id}}" data-action= "add" class="add-cart add-btn update-cart">Add to Cart</button>
