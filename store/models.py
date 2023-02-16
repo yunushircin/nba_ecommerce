@@ -43,6 +43,13 @@ class Filter_Price(models.Model):
 
     def __str__(self):
         return self.price
+    
+
+def upload_location(instance, filename):
+    extension = filename.split('.')
+    _tail = extension[1]
+    _name = extension.split('_')[0]
+    return f'images/{_tail}{_name}'
 
 class Product(models.Model):
     STOCK = ('IN STOCK','IN STOCK'),('OUT OF STOCK','OUT OF STOCK')
@@ -50,7 +57,7 @@ class Product(models.Model):
     name = models.CharField(max_length=200, null=True)
     price = models.DecimalField(max_digits=7, decimal_places=2)
     digital = models.BooleanField(default=False, null=True, blank=False)
-    image = models.ImageField(blank=True, null=True)
+    image = models.ImageField(blank=True, null=True, upload_to=upload_location)
     description = models.TextField(null=True, blank=True)
     stock = models.CharField(choices=STOCK, max_length=200,null=True)
 
@@ -69,6 +76,7 @@ class Product(models.Model):
         except:
             url = ''
         return url
+    
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
@@ -127,7 +135,7 @@ class ShippingAdress(models.Model):
 class Carousel(models.Model):
     title = models.CharField(max_length=200, null=True)
     sub_title = models.CharField(max_length=200, null=True)
-    image = models.ImageField(blank=True, null=True)
+    image = models.ImageField(blank=True, null=True, upload_to=upload_location)
     
     def __str__(self):
         return self.title
