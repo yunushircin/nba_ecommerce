@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from uuid import uuid4
+import os
 # Create your models here.
 
 class Customer(models.Model):
@@ -45,11 +47,18 @@ class Filter_Price(models.Model):
         return self.price
     
 
-def upload_location(instance, filename):
-    extension = filename.split('.')
-    _tail = extension[1]
-    _name = extension.split('_')[0]
-    return f'images/{_tail}{_name}'
+def path_and_rename(path):
+    def wrapper(instance, filename):
+        ext = filename.split('.')[-1]
+        # get filename
+        if instance.pk:
+            filename = '{}.{}'.format(instance.pk, ext)
+        else:
+            # set filename as random string
+            filename = '{}.{}'.format(uuid4().hex, ext)
+        # return the whole path to the file
+        return os.path.join(path, filename)
+    return wrapper
 
 class Product(models.Model):
     STOCK = ('IN STOCK','IN STOCK'),('OUT OF STOCK','OUT OF STOCK')
@@ -57,7 +66,7 @@ class Product(models.Model):
     name = models.CharField(max_length=200, null=True)
     price = models.DecimalField(max_digits=7, decimal_places=2)
     digital = models.BooleanField(default=False, null=True, blank=False)
-    image = models.ImageField(blank=True, null=True, upload_to=upload_location)
+    image = models.ImageField(blank=True, null=True, upload_to=path_and_rename('images/'))
     description = models.TextField(null=True, blank=True)
     stock = models.CharField(choices=STOCK, max_length=200,null=True)
 
@@ -135,7 +144,7 @@ class ShippingAdress(models.Model):
 class Carousel(models.Model):
     title = models.CharField(max_length=200, null=True)
     sub_title = models.CharField(max_length=200, null=True)
-    image = models.ImageField(blank=True, null=True, upload_to=upload_location)
+    image = models.ImageField(blank=True, null=True, upload_to=path_and_rename('images/'))
     
     def __str__(self):
         return self.title
