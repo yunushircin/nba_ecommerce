@@ -27,7 +27,7 @@ class Brand(models.Model):
         return self.name
 
 class Color(models.Model):
-    name = models.CharField(max_length=200, null=True, )
+    name = models.CharField(max_length=200, null=True)
     code = models.CharField(max_length=50)
 
     def __str__(self):
@@ -52,7 +52,7 @@ class Product(models.Model):
     name = models.CharField(max_length=200, null=True)
     price = models.DecimalField(max_digits=7, decimal_places=2)
     digital = models.BooleanField(default=False, null=True, blank=False)
-    image = models.ImageField(blank=True, null=True, upload_to='images')
+    image = models.ImageField(blank=True, null=True)
     description = models.TextField(null=True, blank=True)
     stock = models.CharField(choices=STOCK, max_length=200,null=True)
 
@@ -130,7 +130,7 @@ class ShippingAdress(models.Model):
 class Carousel(models.Model):
     title = models.CharField(max_length=200, null=True)
     sub_title = models.CharField(max_length=200, null=True)
-    image = models.ImageField(blank=True, null=True, upload_to='images')
+    image = models.ImageField(blank=True, null=True)
     
     def __str__(self):
         return self.title
