@@ -19,7 +19,7 @@ class Categories(models.Model):
 
     def __str__(self):
         return self.name
-
+    
 class Brand(models.Model):
     name = models.CharField(max_length=200, null=True)
 
