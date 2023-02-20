@@ -141,3 +141,20 @@ class Carousel(models.Model):
         except:
             url = ''
         return url
+    
+# class ImagePathField(models.CharField):
+#     def _init_(self, *args, **kwargs):
+#         self.upload_to = kwargs.pop('upload_to', None)
+#         super(ImagePathField, self)._init_(*args, **kwargs)
+
+#     def pre_save(self, model_instance, add):
+#         file = getattr(model_instance, self.attname)
+#         if file:
+#             filename = os.path.join(settings.MEDIA_ROOT, self.upload_to, file.name)
+#             file_path = os.path.join(self.upload_to, file.name)
+#             if not os.path.exists(filename):
+#                 with open(filename, 'wb+') as destination:
+#                     for chunk in file.chunks():
+#                         destination.write(chunk)
+#             setattr(model_instance, self.attname, file_path)
+#         return super(ImagePathField, self).pre_save(model_instance, add)

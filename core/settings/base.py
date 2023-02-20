@@ -54,6 +54,9 @@ SIGNALS = {
     'post_save': [
         'signals.copy_image_to_static',
     ],
+    'post_delete': [
+        'signals.delete_image_from_static',
+    ],
 }
 
 MIDDLEWARE = [
