@@ -16,7 +16,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 #BASE_DIR = Path(__file__).resolve().parent.parent
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 # Quick-start development settings - unsuitable for production
@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-sqf4^_je72-2)wntl6=+w2t#m*s=!kokoqk=)(h#ys2mc()xvk
 
 # DEBUG = getenv("IS_DEVELOPMENT", True)
 
-ALLOWED_HOSTS = ['159.89.7.152']
+ALLOWED_HOSTS = ['159.89.7.152','*']
 
 # 'env-nbaecommerce.eba-eeeshp6r.us-west-2.elasticbeanstalk.com'
 
@@ -47,7 +47,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'store.apps.StoreConfig',
+    
 ]
+
+SIGNALS = {
+    'post_save': [
+        'signals.copy_image_to_static',
+    ],
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
